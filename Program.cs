@@ -22,6 +22,7 @@ namespace Petsimulator
 
             //declaring the userinput as 0 to enter the do while loop condition
             string userinput = "0";
+            string pet_type = " ";
             do
             {
                 //Taking input from the user
@@ -36,12 +37,15 @@ namespace Petsimulator
                 {
                     case "1":
                         Console.WriteLine("\nYou have choosen a Cat. " + text1);
+                        pet_type = "Cat";
                         break;
                     case "2":
                         Console.WriteLine("\nYou have choosen a Squirrel. " + text1);
+                        pet_type = "Squirrel";
                         break;
                     case "3":
                         Console.WriteLine("\nYou have choosen a Dog. " + text1);
+                        pet_type = "Dog";
                         break;
                     default:
                         Console.WriteLine("\nPlease enter a valid choice below again");
@@ -59,6 +63,8 @@ namespace Petsimulator
                 petname = Console.ReadLine();
             }
 
+            Console.WriteLine("\nNice Name for a " + pet_type + ". Welcome " + petname + ". Let us take good care of you.");
+           
         }
 
     }
