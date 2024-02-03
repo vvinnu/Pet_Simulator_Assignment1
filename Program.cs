@@ -52,6 +52,7 @@ namespace Petsimulator
 
             //Taking the user input for the name of pet
             string petname = Console.ReadLine();
+
             while (string.IsNullOrWhiteSpace(petname))
             {
                 Console.WriteLine("Please enter a valid name\n");
