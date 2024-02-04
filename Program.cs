@@ -13,18 +13,19 @@ namespace Petsimulator
     {
         static void Main(string[] args)
         {
-            //Displaying list of pets to select from
-
-            Console.WriteLine("List of pets available \n");
-            Console.WriteLine("1. Cat");
-            Console.WriteLine("2. Squirrel");
-            Console.WriteLine("3. Dog");
 
             //declaring the userinput as 0 to enter the do while loop condition
             string userinput = "0";
             string pet_type = " ";
             do
             {
+                //Displaying list of pets to select from
+
+                Console.WriteLine("List of pets available \n");
+                Console.WriteLine("1. Cat");
+                Console.WriteLine("2. Squirrel");
+                Console.WriteLine("3. Dog");
+                
                 //Taking input from the user
                 Console.Write("\nEnter your choice of pet: ");
 
@@ -48,7 +49,7 @@ namespace Petsimulator
                         pet_type = "Dog";
                         break;
                     default:
-                        Console.WriteLine("\nPlease enter a valid choice below again");
+                        Console.WriteLine("\n!!!!!!Please enter a valid choice below again!!!!!!!");
                         break;
 
                 }
@@ -64,9 +65,71 @@ namespace Petsimulator
             }
 
             Console.WriteLine("\nNice Name for a " + pet_type + ". Welcome " + petname + ". Let us take good care of you.");
-           
+
+            //calling the menu class by creating an instance
+            petmenu menu = new petmenu();
+            menu.showmenu(petname);
+
+
         }
 
     }
+    //Class for Menu Items
+    class petmenu
+    {
+        public void showmenu(string petname)
+        {
+            do
+            {
+                Console.WriteLine("\nMain Menu");
+                Console.WriteLine("1. Feed " + petname);
+                Console.WriteLine("2. Play with " + petname);
+                Console.WriteLine("3. Let " + petname + " rest");
+                Console.WriteLine("4. Check " + petname + " status");
+                Console.WriteLine("5. Exit");
+                
+                //Taking input from the user
+                Console.Write("\nEnter the menu option from above to take care of the pet or 5 to exit: ");
 
+                string userinput = Console.ReadLine();
+
+                //Using a switch statement to handle user's choice from the menu options
+
+                switch (userinput)
+                {
+                    case "1":
+                        Console.WriteLine("\nYou fed " + petname + ". His hunger decreased and health improved.");
+                        Console.WriteLine("\nThank you for feeding.");
+                    
+                        break;
+                    case "2":
+                        Console.WriteLine("\nYou played with " + petname + ". He is much more happier now and also a little bit hungry." );
+                        Console.WriteLine("\nThank you for playing.");
+                        
+                        break;
+                    case "3":
+                        Console.WriteLine("\nThank you for resting " + petname + " for a while.");
+                        Console.WriteLine("\nHis health improved , but also he seems likes little less happier now");
+                        
+                        break;
+                    case "4":
+                        Console.WriteLine("\n" + petname + "'s status");
+                        Console.WriteLine("\nHunger    --");
+                        Console.WriteLine("\nHappiness --");
+                        Console.WriteLine("\nHealth    --");   
+                         
+                        break;
+                    case "5":
+                        Console.WriteLine("\nThank you for taking care of the " + petname + ".");
+                        return;
+                        break;
+                    default:
+                        Console.WriteLine("\n!!!!!!!Please enter a valid choice below again from the Menu!!!!!!!");
+                        break;
+
+                }
+            } while ( true );
+
+        }
+    }
 }
