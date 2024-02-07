@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -79,6 +80,11 @@ namespace Petsimulator
     {
         public void showmenu(string petname)
         {
+
+            // Creating an instance of pet_attributes
+            pet_attributes myPet = new pet_attributes();
+
+
             do
             {
                 Console.WriteLine("\nMain Menu");
@@ -98,31 +104,36 @@ namespace Petsimulator
                 switch (userinput)
                 {
                     case "1":
+                        myPet.Feed();
                         Console.WriteLine("\nYou fed " + petname + ". His hunger decreased and health improved.");
                         Console.WriteLine("\nThank you for feeding.");
-                    
                         break;
+
                     case "2":
-                        Console.WriteLine("\nYou played with " + petname + ". He is much more happier now and also a little bit hungry." );
+                        myPet.Play();
+                        Console.WriteLine("\nYou played with " + petname + ". He is much more happier now and also a little bit hungry.");
                         Console.WriteLine("\nThank you for playing.");
-                        
                         break;
+
                     case "3":
+                        myPet.Rest();
                         Console.WriteLine("\nThank you for resting " + petname + " for a while.");
                         Console.WriteLine("\nHis health improved , but also he seems likes little less happier now");
-                        
                         break;
+
                     case "4":
+
                         Console.WriteLine("\n" + petname + "'s status");
-                        Console.WriteLine("\nHunger    --");
-                        Console.WriteLine("\nHappiness --");
-                        Console.WriteLine("\nHealth    --");   
-                         
+                        Console.WriteLine("\nHunger    -- " + myPet.Hunger);
+                        Console.WriteLine("\nHappiness -- " + myPet.Happiness);
+                        Console.WriteLine("\nHealth    -- " + myPet.Health);
                         break;
+
                     case "5":
                         Console.WriteLine("\nThank you for taking care of the " + petname + ".");
+
                         return;
-                        break;
+                        
                     default:
                         Console.WriteLine("\n!!!!!!!Please enter a valid choice below again from the Menu!!!!!!!");
                         break;
@@ -132,4 +143,78 @@ namespace Petsimulator
 
         }
     }
+    class pet_attributes
+    {
+        // Attributes declaration
+        public int Hunger { get; set; }
+        public int Happiness { get; set; }
+        public int Health { get; set; }
+
+        // Constructor
+        public pet_attributes()
+        {
+            // Set default values for attributes
+            Hunger = 5;
+            Happiness = 5;
+            Health = 10;
+        }
+
+
+        // Method to feed the pet
+        public void Feed()
+        {
+            Hunger -= 1; // Decrease hunger when fed
+            if (Hunger < 0)  // Ensure hunger doesn't go below 0
+            {
+                Hunger = 0;
+            }
+            Health++; // Increase health slightly
+            if (Health > 10)
+            {
+                Health = 10; // Ensure health doesn't exceed 10
+            }
+            Happiness += 1; // Increase happiness when fed
+            if (Happiness > 10)  // Ensure happiness doesn't exceed 10
+            {
+                Happiness = 10;
+            }
+
+        }
+
+        // Method to play with the pet
+        public void Play()
+        {
+            Happiness += 1; // Increase happiness when played with
+            if (Happiness > 10)  // Ensure happiness doesn't exceed 10
+            { 
+                Happiness = 10; 
+            }
+            Hunger++; // Increase hunger slightly
+            if (Hunger >10)  // Ensure hunger doesn't go above 10
+            {
+                Hunger = 0;
+            }
+            Health--; // Increase health slightly
+            if (Health < 0)
+            {
+                Health = 0; // Ensure health doesn't go below 0
+            }
+
+        }
+
+        // Method to let the pet rest
+        public void Rest()
+        {
+            Health += 1; // Increase health when rested
+            if (Health > 10) Health = 10; // Ensure health doesn't exceed 10
+            Happiness--; // Decrease happiness slightly
+
+
+        }
+        public void Display_Status()
+        {
+            
+        }
+    }
+
 }
