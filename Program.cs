@@ -27,6 +27,7 @@ namespace Petsimulator
             {
                 //Displaying list of pets to select from
 
+                Console.WriteLine("Welcome to the virtual pet game\n");
                 Console.WriteLine("List of pets available \n");
                 Console.WriteLine("1. Cat");
                 Console.WriteLine("2. Squirrel");
