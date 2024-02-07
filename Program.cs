@@ -93,7 +93,9 @@ namespace Petsimulator
                 Console.WriteLine("3. Let " + petname + " rest");
                 Console.WriteLine("4. Check " + petname + " status");
                 Console.WriteLine("5. Exit");
-                
+
+                Console.WriteLine("----------------------------------------------------------------------");
+
                 //Taking input from the user
                 Console.Write("\nEnter the menu option from above to take care of the pet or 5 to exit: ");
 
@@ -110,9 +112,17 @@ namespace Petsimulator
                         break;
 
                     case "2":
-                        myPet.Play();
-                        Console.WriteLine("\nYou played with " + petname + ". He is much more happier now and also a little bit hungry.");
-                        Console.WriteLine("\nThank you for playing.");
+                        if (myPet.Hunger >= 8)
+                        {
+                            Console.WriteLine("\n" + petname + " is hungry. Sorry it cannot play now");
+                            Console.WriteLine( petname + " needs to be fed for you to play with it");
+                        }
+                        else
+                        {
+                            myPet.Play();
+                            Console.WriteLine("\nYou played with " + petname + ". He is much more happier now and also a little bit hungry.");
+                            Console.WriteLine("\nThank you for playing.");
+                        }
                         break;
 
                     case "3":
